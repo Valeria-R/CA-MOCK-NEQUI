@@ -1,0 +1,56 @@
+//en el archivo server.js
+
+const path = require('path');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const flash = require('connect-flash');
+const morgan = require('morgan');
+const cookieParser = require('cokie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+
+
+//en el archivo database.js
+
+module.exports = {
+	'url': 'mongodb://localhost//nuestraBaseDeDatos'
+};
+
+//en el archivo server
+
+const { url } = require('./config/database');
+
+mongoose.connect(url, {
+	useMongoClient: true
+});
+
+require('./config/passport')(passport); //esto todavia no funciona
+
+//despues del puerto
+
+app.set('views',path.join(_dirname,'views'));
+app.set('view engine','ejs');
+
+//middlewares 
+app.use(morgan('dev'));
+app.use(cokieParser());
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(session({
+	secret: 'teamomiamornichols', //palabra secreta
+	resave: false,
+	saveUninitialized: false
+}));
+
+app.use(passport.initialize);
+app.use(passport.session());
+app.use(flash());
+
+
+//routes
+
+require('./app/routes')(app,passport);
+
+//static files
+
+app.use(express.static(path.join(_dirname,'public')));
