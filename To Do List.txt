@@ -1,0 +1,55 @@
+Usuario (Nombre, email, contraseña)
+
+Consultar saldo disponible
+
+Consultar saldo total
+
+Ingresar dinero
+
+Retirar dinero
+
+Enviar dinero a otro usuario
+
+Consultar N transacciones (ingreso, retiros, recepciones y envios)
+
+Menu colchon:
+Consultar dinero guardado
+Agregar dinero disponible
+Retirar dinero del colchon
+Regresar al menu anterior 
+
+Menu bolsillos:
+Listar informacion de bolsillos (Nombre y saldo)
+Crear bolsillo nuevo (Nombre, saldo = 0)
+Eliminar un bolsillo (Dinero se envia a disponible)
+Agregar dinero a un bolsillo
+Retirar dinero de un bolsillo
+Enviar dinero de un bolsillo a otro usuario
+Regresar al menu anterior
+
+Menu metas:
+Listar metas
+Nombre
+Monto total
+Dinero ahorrado
+Dinero restante (para cada meta)
+Estado actual (cumplida o vencida)
+Fecha limite
+Crear meta (Nombre, monto total, fecha limite)
+Cerrar una meta (Dinero enviado a disponible)
+Agregar dinero a una meta
+Regresar al menu anterior
+
+Salir del programa
+
+Dinero - Retiro, transferencia
+
+Colchon
+
+0..* Bolsillos
+
+0..* Meta - (Nombre, fecha, monto)
+
+Disponible = Total en cuenta - dinero en colchon - dinero en metas - dinero en bolsillos
+
+
