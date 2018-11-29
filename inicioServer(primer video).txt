@@ -1,0 +1,42 @@
+npm init --yes
+
+npm i express express-session cookie-parse connect-flash ejs bcrypt-nodejs body-parser mongoose morgan passport passport-local
+
+// crear carpeta dentro del login que se llame src - aca se va adefinir toda la estructura del proyecto
+
+// crear una carpeta dentro de scr que se llame app
+
+// crear carpeta llamada models dentro del app
+
+//crear carpeta llamada config en src
+
+//crear archivo user.js
+
+// config:
+	crear database.js -base de datos
+	passport.js -login
+
+// crear carpeta views en src - esto es para el "html" archivos ejs
+
+// crear carpeta en src public - archivos estaticos
+
+
+//archivo origen index.js o server.js - aca van los modulos
+
+
+//codigo en server.js
+
+const express = require('express');
+const app express();
+
+
+app.set('port', process.env.PORT || 3000) //este es la conexion del puerto 
+
+
+//static files
+
+app.listen(app.get('port'), () => {
+console.log('server on port', app.get('port'));
+});
+
+//aca se inicializa el servidor
