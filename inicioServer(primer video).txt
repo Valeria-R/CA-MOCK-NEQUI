@@ -39,4 +39,7 @@ app.listen(app.get('port'), () => {
 console.log('server on port', app.get('port'));
 });
 
+
+//en el package de json, en la parte de scripts, se agrega "start":"node src/server.js"
+
 //aca se inicializa el servidor
