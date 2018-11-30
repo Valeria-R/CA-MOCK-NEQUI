@@ -4,8 +4,16 @@ module.exports => (app,passport){
 	app.get('/',(req,res) => {
 		res.render('index');
 	});
+	
+	app.get('/login',(req,res) => {
+		res.render('login',{
+			message: req.flash('loginMessage')
+		});
+	});
 };
 
 //crear un archivo en views que se llame index.ejs(aca haremos la pagina, el html)
 
 // no he acabado el tercer video min 7
+
+//crear archivo login.ejs en views (formulario de login)
