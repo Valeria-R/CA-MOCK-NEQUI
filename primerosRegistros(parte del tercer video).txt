@@ -1,0 +1,11 @@
+//en el archivo routes
+
+module.exports => (app,passport){
+	app.get('/',(req,res) => {
+		res.render('index');
+	});
+};
+
+//crear un archivo en views que se llame index.ejs(aca haremos la pagina, el html)
+
+// no he acabado el tercer video min 7
