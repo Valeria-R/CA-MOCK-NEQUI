@@ -17,3 +17,8 @@ module.exports => (app,passport){
 // no he acabado el tercer video min 7
 
 //crear archivo login.ejs en views (formulario de login)
+
+//crear nueva carpeta llamada partials en views
+//dentro de partials se crea un archivo llamado head.ejs -  aca insertamos el bootstrap
+
+//en el formulario de login,ejs, en el head vamos a escribir: <% include partials/head %>
