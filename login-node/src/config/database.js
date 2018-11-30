@@ -1,5 +1,5 @@
 module.exports = {
 
-	'url': 'mongodb://localhost//nuestraBaseDeDatos'
+	'url': 'mongodb://localhost//nequi-db'
 
 };
