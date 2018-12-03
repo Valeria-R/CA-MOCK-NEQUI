@@ -6,7 +6,7 @@ module.exports = (app, passport) => {
 
 	});
 
-	
+
 
 	app.get('/login',(req,res) => {
 
@@ -17,43 +17,42 @@ module.exports = (app, passport) => {
 		});
 
 	});
-	
-	
+
+
 	app.post('/login', passport.authenticate('local-login', {
-
 		successRedirect: '/profile',
-
 		failureRedirect: '/login',
-
 		failureFlash: true
-
 	}));
-
-
-
-	// signup view
 
 	app.get('/signup', (req, res) => {
-
 		res.render('signup', {
-
 			message: req.flash('signupMessage')
-
 		});
-
 	});
 
+	app.post('/signup', passport.authenticate('local-signup',{
+    failureRedirect: '/signup',
+    successRedirect:'/profile',
+    failureFlash: true
+  }));
 
+	app.get('/profile', isLoggedIn, (req,res) => {
+    res.render('profile',{
+        user:req.user
+    });
+	});
 
-	app.post('/signup', passport.authenticate('local-signup', {
-
-		successRedirect: '/profile',
-
-		failureRedirect: '/signup',
-
-		failureFlash: true // allow flash messages
-
-	}));
+	app.get('/logout',(req,res) =>{
+	    req.logout();
+	    res.redirect('/')
+	});
 
 };
 
+function isLoggedIn(req,res,next){
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    return res.redirect('/login');
+}

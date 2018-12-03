@@ -25,13 +25,11 @@ const { url } = require('./config/database');
 
 //settings
 
-mongoose.connect(url, {
+mongoose.connect( url, {useNewUrlParser: true})
+  .then(db => console.log('DB connected'))
+  .catch(err => console.log(err))
 
-	useMongoClient: true
-
-});
-
-//require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 app.set('port', process.env.PORT || 3000);
 
@@ -41,7 +39,7 @@ app.set('view engine', 'ejs');
 
 
 
-//middlewares 
+//middlewares
 
 app.use(morgan('dev'));
 
@@ -86,7 +84,3 @@ app.listen(app.get('port'), () => {
 console.log('server on port', app.get('port'));
 
 });
-
-
-
-

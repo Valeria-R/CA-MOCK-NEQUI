@@ -1,20 +1,23 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-node.js');
+const bcrypt = require('bcrypt-nodejs');
+const SHA2 = require('sha2');
 
 const userSchema = new mongoose.Schema({
   local:{
+    name: String,
+    lastName: String,
     email: String,
     password: String
   }
 }) ;
 
-UserSchema.methods.hashingPassword = function(password){
+userSchema.methods.hashingPassword = function(password){
   return SHA2.SHA256(password).toString('hex')
 }
 
-UserSchema.methods.validatePassword = function(password){
+userSchema.methods.validatePassword = function(password){
   password = SHA2.SHA256(password).toString('hex')
   return password == (this.local.password)
 }
 
-module.exports = moongose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);
