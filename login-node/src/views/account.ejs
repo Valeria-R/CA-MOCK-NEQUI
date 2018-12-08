@@ -44,7 +44,7 @@
 
       <input required type="text" name="userId" value="<%= user._id %>" class="form-control" hidden>
 
-      <input required type="number" name="money" class="form-control">
+      <input required type="number" min="<%= user.account.saldoDisponible <= 0?1:1 %>" max="<%= user.account.saldoDisponible %>" name="money" class="form-control">
 
         <button type="submit" class="col-2 btn btn-danger btn-sm" onclick="window.top.location.reload();"> Retirar </button>
 

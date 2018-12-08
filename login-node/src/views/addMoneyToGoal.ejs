@@ -16,7 +16,7 @@
                         <input type="text" name="userId" value="<%= user._id %>" hidden>
                         <input type="text" name="idGoal" value="<%= goal._id %>" hidden>
                         <div class="form-group">
-                            <input type="number" name="goalMoney" class="form-control" required>
+                            <input type="number" min="<%= user.account.saldoDisponible <=0?1:1 %>" max="<%= (user.account.saldoDisponible <= goal.montoTotal)? user.account.saldoDisponible : goal.montoTotal %>" name="goalMoney" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-secondary" onclick="parent.location.reload();"> Añadir Dinero </button>
                     </form>

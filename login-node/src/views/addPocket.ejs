@@ -16,7 +16,7 @@
                         <input type="text" name="userId" value="<%= user._id %>" hidden>
                         <input type="text" name="pocketId" value="<%= pocket._id %>" hidden>
                         <div class="form-group">
-                            <input type="number" name="pocketSaldo" class="form-control" required>
+                            <input min="<%= user.account.saldoDisponible <=0?1:1 %>" max="<%= user.account.saldoDisponible %>" type="number" name="pocketSaldo" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-secondary" onclick="parent.location.reload();"> Añadir Dinero </button>
                     </form>

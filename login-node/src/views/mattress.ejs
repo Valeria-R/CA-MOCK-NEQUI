@@ -27,7 +27,7 @@
 
       <input required type="text" name="userId" value="<%= user._id %>" class="form-control" hidden>
 
-      <input required type="number" name="mattressMoney" class="form-control">
+      <input required type="number" min="<%= user.account.saldoDisponible <=0?1:1 %>" max="<%= user.account.saldoDisponible %>" name="mattressMoney" class="form-control">
 
       <button type="submit" class="col-2 btn btn-info btn-sm"  onclick="window.top.location.reload();">Ingresar</button>
 
@@ -43,7 +43,7 @@
 
       <input required type="text" name="userId" value="<%= user._id %>" class="form-control" hidden>
 
-      <input required type="number" name="mattressAccount" class="form-control">
+      <input required type="number" min="<%= user.account.saldoDisponible <= 0?1:1 %>" max="<%= user.account.saldoDisponible %>" name="mattressAccount" class="form-control">
 
         <button type="submit" class="col-2 btn btn-danger btn-sm"  onclick="window.top.location.reload();"> Retirar </button>
 
