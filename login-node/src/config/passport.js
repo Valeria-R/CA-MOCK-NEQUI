@@ -32,6 +32,13 @@ module.exports = function(passport){
                    newUser.local.lastName = req.body.lastName;
                    newUser.local.email = req.body.email;
                    newUser.local.password = newUser.hashingPassword(req.body.password);
+                   newUser.account = {
+	                    saldoTotal: 0,
+	                    saldoDisponible: 0,
+	                    matress: 0,
+	                    pockets: [],
+	                     goals: []
+                    }
                    newUser.save(function (err) {
                      if (err) { throw err; }
                      return done(null, newUser);
