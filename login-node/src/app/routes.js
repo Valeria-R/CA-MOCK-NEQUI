@@ -85,6 +85,16 @@ app.post("/addMattress", isLoggedIn, (res,req) => {
 		res.redurect('/profile')
 	})
 })
+	
+	//devolver plata del colchon al saldo
+app.post("/removeMattress", isLoggedIn, (res,req) => {
+    user.findById({_id: req.body.userId}, function(user, err){
+        user.account.saldoDisponible = user.account.saldoDisponible + parseInt(req.body.mattressAccount)
+        user.account.mattress = user.account.mattress - parseInt(req.body.mattressAccount)
+        user.save()
+        res.redirect('/profile')
+    })
+})
 
 
 //crear bolsillo
