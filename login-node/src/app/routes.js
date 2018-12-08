@@ -48,12 +48,12 @@ module.exports = (app, passport) => {
 	    res.redirect('/')
 	});
 
-	
+
 	//añadir dinero
 app.post("/addMoney", isLoggedIn, (res,req) =>{
 	user.findById({_id: req.body.userId}, function(user,err){
 		if(err){
-			res.status(500).send()	
+			res.status(500).send()
 		}
 		user.account.saldoTotal = user.account.saldoTotal + parseInt(req.body.money)
 
@@ -183,7 +183,17 @@ app.post("/addGoalMoney", isLoggedIn, (res,req) => {
 	})
 })
 
+app.get("/mattress", (req,res) => {
+	res.render('mattress')
+})
 
+app.get("/pockets", (req,res) => {
+ res.render("pockets")
+})
+
+app.get("/goals", (req,res) => {
+ res.render("goals")
+})
 
 };
 

@@ -12,8 +12,15 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> <!-- esto es para jquery -->
-
-
+  <style media="screen">
+  #insideFrame{
+    display: inline-block;
+    width: 700px;
+    height: 100%;
+    margin-left: 1.5%;
+    background-color: #FFFFFF;
+  }
+  </style>
   </head>
 
   <body class="login">
@@ -51,26 +58,45 @@
 <div class="card-body">
   <!-- form -->
   <form action="/login" method="post">
-    <div class="form-group">
-      <label for="email">Saldo total de la cuenta:</label>
-      <h4>0000</h4>
+
+    <div class="row">
+    <div class="col">
+        <div class="row">
+          <div class="form-group">
+            <label for="email">Saldo en colchon:</label>
+            <a class="btn btn-primary" href="/mattress" target="insideFrame"></a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="email">Saldo en los bolsillos:</label>
+            <a class="btn btn-primary" href="/pockets" target="insideFrame"></a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="email">Saldo en las metas:</label>
+            <a class="btn btn-primary" href="/goals" target="insideFrame"></a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="email">Saldo total de la cuenta:</label>
+            <h4>0000</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="email">Saldo disponible de la cuenta:</label>
+            <h4>0000</h4>
+          </div>
+        </div>
     </div>
-    <div class="form-group">
-      <label for="email">Saldo disponible de la cuenta:</label>
-      <h4>0000</h4>
+    <div class="col">
+      <iframe src="" id="insideFrame" name="insideFrame" frameBorder="20"></iframe>
     </div>
-    <div class="form-group">
-      <label for="email">Saldo en los colchones:</label>
-      <h4>0000</h4>
     </div>
-    <div class="form-group">
-      <label for="email">Saldo en los bolsillos:</label>
-      <h4>0000</h4>
-    </div>
-    <div class="form-group">
-      <label for="email">Saldo en las metas:</label>
-      <h4>0000</h4>
-    </div>
+
   </form>
   <hr>
 </div>
