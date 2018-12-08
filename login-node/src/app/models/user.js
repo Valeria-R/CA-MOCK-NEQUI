@@ -30,8 +30,8 @@ const userSchema = new mongoose.Schema({
     lastName: String,
     email: String,
     password: String
-  }
-  Account: accountSchema
+  },
+  account: accountSchema
 }) ;
 
 userSchema.methods.hashingPassword = function(password){
