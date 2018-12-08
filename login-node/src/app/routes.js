@@ -115,10 +115,17 @@ app.post("/addPocket", isLoggedIn, (req,res) => {
 		res.redirect('/profile')
 	})
 })
+	//añadir saldo al bolsillo
+app.get("/añadirSaldo/:userId/:pocketId", isLoggedIn, (req,res) => {
+	res.render('añadirPocket',{
+		user:req.user,
+		pocket:req.pocket
+	})
+})
 
 //añadir dinero al bolsillo
-app.post("/addPocketMoney", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(err,user){
+app.post("/addPocketMoney", isLoggedIn, (res,req) => {
+	user.findById({_id: req.body.userId}, function(user, err){
 		if(err){
 			res.status(500).send()
 		}
@@ -131,9 +138,16 @@ app.post("/addPocketMoney", isLoggedIn, (req,res) => {
 	})
 })
 
+app.get("/retirarSaldo/:userId/:pocketId", isLoggedIn, (req,res) => {
+	res.render('retirarDineroPocket',{
+		user:req.user,
+		pocket:req.pocket
+	})
+})
+	
 //retirar dinero del bolsillo
-app.post("/removePocket", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(err,user){
+app.post("/removePocket", isLoggedIn, (res,req) => {
+	user.findById({_id: req.body.userId}, function(user, err){
 
 		var monto = parseInt(req.body.pocketMoney)
 		user.account.pockets.id(req.body.idPocket).pocketSaldo -= monto,
@@ -145,8 +159,9 @@ app.post("/removePocket", isLoggedIn, (req,res) => {
 	})
 })
 
+
 //eliminar bolsillo
-app.post("/deletePocket", isLoggedIn, (req,res) => {
+app.get("/deletePocket/:userId/:pocketId", isLoggedIn, (req,res) => {
 	User.findById({_id: req.body.userId}, function(err,user){
 		var pockets = user.account.pockets
 		for(var i = 0; i < pockets.length; i++ ){
