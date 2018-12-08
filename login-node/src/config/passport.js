@@ -35,7 +35,7 @@ module.exports = function(passport){
                    newUser.account = {
 	                    saldoTotal: 0,
 	                    saldoDisponible: 0,
-	                    matress: 0,
+	                    mattress: 0,
 	                    pockets: [],
 	                     goals: []
                     }

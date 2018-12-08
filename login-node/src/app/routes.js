@@ -188,7 +188,6 @@ app.post("/addGoalMoney", isLoggedIn, (res,req) => {
 })
 
 app.get('/mattress', (req,res) => {
-	console.log(res.User);
 	res.render('mattress',{
         user: req.user
   })
