@@ -19,37 +19,39 @@
 <body>
   <!-- form -->
 
-  <form action="/test" method="POST">
+  <form action="/addMoney" method="POST">
 
     <label>Ingresar dinero a la cuenta:</label>
 
-    <div class="input-group">
+    <div id="wrapper">
 
-      <input required type="number" name="userId" value="<%= user._id %>" class="form-control" hidden>
+      <input type="text" name="userId" value="<%= user._id %>" class="form-control" hidden>
 
       <input required type="number" name="money" class="form-control">
 
-      <button type="submit" class="col-2 btn btn-info btn-sm">Ingresar</button>
+      <button type="submit" class="col-2 btn btn-info btn-sm" onclick="window.top.location.reload();">Ingresar</button>
 
     </div>
 
   </form>
 
-  <form action="/removeMoney" method="post">
+
+  <form action="/removeMoney" method="POST">
 
     <label>Retirar dinero de la cuenta:</label>
 
-    <div class="input-group">
+    <div>
 
-      <input required type="number" name="userId" value="<%= user._id %>" class="form-control" hidden>
+      <input required type="text" name="userId" value="<%= user._id %>" class="form-control" hidden>
 
       <input required type="number" name="money" class="form-control">
 
-        <button type="submit" class="col-2 btn btn-danger btn-sm"> Retirar </button>
+        <button type="submit" class="col-2 btn btn-danger btn-sm" onclick="window.top.location.reload();"> Retirar </button>
 
     </div>
 
   </form>
+
 
 </body>
 

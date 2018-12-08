@@ -53,7 +53,7 @@ module.exports = (app, passport) => {
 
 	//añadir dinero
 app.post('/addMoney', isLoggedIn, (req,res) =>{
-	console.log(req.body);
+	console.log(req.body.userId);
 	User.findById({_id: req.body.userId}, function(err,user){
 		if(err){
 			console.log("Entre");
@@ -64,46 +64,46 @@ app.post('/addMoney', isLoggedIn, (req,res) =>{
 
 		user.account.saldoDisponible = user.account.saldoDisponible + parseInt(req.body.money)
 		user.save()
-		res.redirect('/profile')
 	})
 })
 
 //remover dinero
 app.post("/removeMoney", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(user,err){
+	User.findById({_id: req.body.userId}, function(err,user){
 		user.account.saldoTotal = user.account.saldoTotal - parseInt(req.body.money)
 
 		user.account.saldoDisponible = user.account.saldoDisponible - parseInt(req.body.money)
 		user.save()
-		res.redirect('/profile')
 	})
 })
 
 //añadir dinero al colchon
 app.post("/addMattress", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(user,err){
+	User.findById({_id: req.body.userId}, function(err,user){
 		if(err){
 			res.status(500).send()
 		}
 		user.account.mattress = user.account.mattress + parseInt(req.body.mattressMoney);
+		user.account.saldoDisponible = user.account.saldoDisponible - parseInt(req.body.mattressMoney);
 		user.save()
-		res.redirect('/profile')
 	})
 })
 
 //devolver plata del colchon al saldo
 app.post("/removeMattress", isLoggedIn, (req,res) => {
-    User.findById({_id: req.body.userId}, function(user, err){
+    User.findById({_id: req.body.userId}, function(err,user){
+			if(err){
+				res.status(500).send()
+			}
         user.account.saldoDisponible = user.account.saldoDisponible + parseInt(req.body.mattressAccount)
         user.account.mattress = user.account.mattress - parseInt(req.body.mattressAccount)
         user.save()
-        res.redirect('/profile')
     })
 })
 
 //crear bolsillo
 app.post("/addPocket", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(user, err){
+	User.findById({_id: req.body.userId}, function(err,user){
 		if(err){
 			res.status(500).send()
 		}
@@ -118,7 +118,7 @@ app.post("/addPocket", isLoggedIn, (req,res) => {
 
 //añadir dinero al bolsillo
 app.post("/addPocketMoney", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(user, err){
+	User.findById({_id: req.body.userId}, function(err,user){
 		if(err){
 			res.status(500).send()
 		}
@@ -133,7 +133,7 @@ app.post("/addPocketMoney", isLoggedIn, (req,res) => {
 
 //retirar dinero del bolsillo
 app.post("/removePocket", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(user, err){
+	User.findById({_id: req.body.userId}, function(err,user){
 
 		var monto = parseInt(req.body.pocketMoney)
 		user.account.pockets.id(req.body.idPocket).pocketSaldo -= monto,
@@ -147,7 +147,7 @@ app.post("/removePocket", isLoggedIn, (req,res) => {
 
 //eliminar bolsillo
 app.post("/deletePocket", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(user, err){
+	User.findById({_id: req.body.userId}, function(err,user){
 		var pockets = user.account.pockets
 		for(var i = 0; i < pockets.length; i++ ){
 			if(pockets[i] == req.body.pockedId){
@@ -162,7 +162,7 @@ app.post("/deletePocket", isLoggedIn, (req,res) => {
 
 //añadir una meta
 app.post("/addGoal", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(user,err){
+	User.findById({_id: req.body.userId}, function(err,user){
 		if(err){
 			res.status(500).send()
 		}
@@ -181,7 +181,7 @@ app.post("/addGoal", isLoggedIn, (req,res) => {
 
 //añadir dinero a la meta
 app.post("/addGoalMoney", isLoggedIn, (req,res) => {
-	User.findById({_id: req.body.userId}, function(user,err){
+	User.findById({_id: req.body.userId}, function(err,user){
 		if(err){
 			res.status(500).send()
 		}

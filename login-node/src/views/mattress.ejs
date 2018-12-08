@@ -19,30 +19,33 @@
 <body>
   <!-- form -->
 
-  <form action="" method="">
+  <form action="/addMattress" method="POST">
 
     <label for="moneyToMattress">Monto a ingresar:</label>
 
     <div class="input-group" id="wrapper">
 
+      <input required type="text" name="userId" value="<%= user._id %>" class="form-control" hidden>
+
       <input required type="number" name="mattressMoney" class="form-control">
 
-      <button type="submit" class="col-2 btn btn-info btn-sm">Ingresar</button>
-
+      <button type="submit" class="col-2 btn btn-info btn-sm"  onclick="window.top.location.reload();">Ingresar</button>
 
     </div>
 
   </form>
 
-  <form action="" method="">
+  <form action="/removeMattress" method="POST">
 
     <label for="moneyToAccount">Sacar plata a cuenta:</label>
 
     <div class="input-group">
 
+      <input required type="text" name="userId" value="<%= user._id %>" class="form-control" hidden>
+
       <input required type="number" name="mattressAccount" class="form-control">
 
-        <button type="submit" class="col-2 btn btn-danger btn-sm"> Retirar </button>
+        <button type="submit" class="col-2 btn btn-danger btn-sm"  onclick="window.top.location.reload();"> Retirar </button>
 
     </div>
 
@@ -53,15 +56,6 @@
   <br>
 
   <label for="moneyOnMattress"> <%= user.account.mattress %> </label>
-
-  <script>
-    function reload () {
-    var fr=document.getElementById('tehframe');
-    if(fr!=null) document.getElementById("wrapper").removeChild(fr);
-    var iframehtml="<iframe id='tehframe' src=…></iframe>";
-    document.getElementById("wrapper").innerHTML=iframehtml;
-    }
-  </script>
 
 </body>
 
