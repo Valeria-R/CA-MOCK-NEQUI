@@ -12,7 +12,7 @@ const goalSchema = new mongoose.Schema({
 	montoTotal: Number,
 	dineroAhorrado: Number,
 	dineroRestante: Number,
-	estado: Boolean,
+	estado: String,
 	fechaLimite: Date
 });
 

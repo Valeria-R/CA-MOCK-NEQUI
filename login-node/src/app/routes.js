@@ -190,26 +190,39 @@ app.post("/addGoal", isLoggedIn, (req,res) => {
 			montoTotal: req.body.goalTotal,
 			dineroAhorrado: 0,
 			dineroRestante: req.body.goalTotal,
-			estado: false,
+			estado: "Sin completar",
 			fechaLimite: req.body.goalDate
 		})
 		user.save()
-		res.redirect('/profile')
 	})
 })
 
 //añadir dinero a la meta
+app.get("/moneyToGoal/:userId/:idGoal", isLoggedIn, (req,res) => {
+	User.findById(req.user._id, function(err,user){
+		var goal = user.account.goals.id(req.params.idGoal)
+		res.render('addMoneyToGoal',{
+			user:req.user,
+			goal:goal
+		})
+	})
+})
+
 app.post("/addGoalMoney", isLoggedIn, (req,res) => {
+	console.log(req.body);
 	User.findById({_id: req.body.userId}, function(err,user){
 		if(err){
 			res.status(500).send()
 		}
 		var monto = parseInt(req.body.goalMoney)
-		user.account.goals.id(req.body.idGoal).dineroAhorrado += amount,
-		user.account.goals.id(req.boy.idGoal).montoTotal -= amount,
-		user.account.saldoDisponible -= amount
+		console.log(monto);
+		user.account.goals.id(req.body.idGoal).dineroAhorrado += monto,
+		user.account.goals.id(req.body.idGoal).dineroRestante -= monto,
+		user.account.saldoDisponible -= monto
+    if (user.account.goals.id(req.body.idGoal).dineroAhorrado >= user.account.goals.id(req.body.idGoal).montoTotal) {
+			user.account.goals.id(req.body.idGoal).estado = "Completado"
+    }
 		user.save()
-		res.redirect('/profile')
 	})
 })
 
@@ -225,14 +238,16 @@ app.get('/mattress', isLoggedIn, (req,res) => {
   })
 })
 
-app.get('/pockets', (req,res) => {
+app.get('/pockets', isLoggedIn, (req,res) => {
  res.render('pockets',{
 	 			user: req.user
  })
 })
 
-app.get("/goals", isLoggedIn, (req,res) => {
- res.render("goals")
+app.get("/goals", (req,res) => {
+	res.render('goals',{
+ 	 			user: req.user
+  })
 })
 
 };

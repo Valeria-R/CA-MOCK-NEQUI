@@ -1,1 +1,71 @@
-<p>Goals</p>
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Goals</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> <!-- este es para el css -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> <!-- esto es para jquery -->
+  </head>
+
+  <body class="goals">
+
+    <div class="row">
+        <!-- Form -->
+        <div class="col-md-5">
+            <div class="card">
+                    <form action="/addGoal" method="POST">
+                        <input type="text" name="userId" value="<%= user._id %>" hidden>
+                        <div class="form-group">
+                            <input type="text" name="goalName" placeholder="Insert a goal name" class="form-control" required>
+                            <input type="number" name="goalTotal" placeholder="Insert a goal" class="form-control" required>
+                            <input type="date" name="goalDate" placeholder="Insert a date" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary" onclick="parent.location.reload();"> Añadir </button>
+                    </form>
+            </div>
+        </div>
+
+        <!--list-->
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Goal name</th>
+                        <th>Total ammount</th>
+                        <th>Money saved</th>
+                        <th>Money left</th>
+                        <th>Goal date</th>
+                        <th>Status</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% var goals = user.account.goals %>
+                    <% for(var i = 0; i < goals.length; i++){ %>
+                        <tr>
+                            <td><%= goals[i].goalName %></td>
+                            <td><%= goals[i].montoTotal %></td>
+                            <td><%= goals[i].dineroAhorrado %></td>
+                            <td><%= goals[i].dineroRestante %></td>
+                            <td><%= goals[i].fechaLimite %></td>
+                            <td><%= goals[i].estado %></td>
+                            <td>
+                                <a href="/moneyToGoal/<%= user._id %>/<%= goals[i]._id %>" class="btn btn-info">Añadir Dinero</a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+  </body>
+
+</html>
