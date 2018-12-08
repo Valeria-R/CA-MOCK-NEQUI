@@ -38,6 +38,13 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home</a>
       </li>
+      <!--
+      <form action="/pockets" method="get">
+      <li class="nav-item">
+        <a class="nav-link" href="pockets.ejs">Bolsillos</a>
+      </li>
+      </form>
+    -->
       <li class="nav-item">
         <a class="nav-link" href="#">Transferencias</a>
       </li>
@@ -53,35 +60,36 @@
   <!-- form -->
     <div class="row">
     <div class="col">
-
       <div class="row">
         <div class="form-group">
           <form action="/account" method="get" target="insideFrame">
             <input type="text" name="userId" value="<%= user._id %>" hidden>
-            <label >Saldo en cuenta:</label>
+            <label >Acciones de cuenta:</label>
             <button class="btn btn-primary" type="submit"></button>
           </form>
         </div>
       </div>
-
         <div class="row">
           <div class="form-group">
             <form action="/mattress" method="get" target="insideFrame">
               <input type="text" name="userId" value="<%= user._id %>" hidden>
-              <label >Saldo en colchon:</label>
+              <label >Acciones del colchon:</label>
               <button class="btn btn-primary" type="submit"></button>
             </form>
           </div>
         </div>
         <div class="row">
           <div class="form-group">
-            <label >Saldo en los bolsillos:</label>
-            <a class="btn btn-primary" href="/pockets" target="insideFrame"></a>
+            <form action="/pockets" method="get" target="insideFrame">
+              <input type="text" name="userId" value="<%= user._id %>" hidden>
+              <label >Acciones con bolsillos:</label>
+              <button class="btn btn-primary" type="submit"></button>
+            </form>
           </div>
         </div>
         <div class="row">
           <div class="form-group">
-            <label >Saldo en las metas:</label>
+            <label >Acciones de metas:</label>
             <a class="btn btn-primary" href="/goals" target="insideFrame"></a>
           </div>
         </div>
