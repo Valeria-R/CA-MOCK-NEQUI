@@ -2,6 +2,29 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 const SHA2 = require('sha2');
 
+const accountSchema = new mongoose.Schema({
+	saldoTotal: Number,
+	saldoDisponible: Number,
+	mattress: Number,
+	pockets:[pocketSchema],
+	goals:[goalSchema]
+});
+
+const pocketSchema = new mongoose.Schema({
+	pocketName: String,
+	pocketSaldo: Number
+});
+
+const goalSchema = new mongoose.Schema({
+	goalName: String,
+	montoTotal: Number,
+	dineroAhorrado: Number,
+	dineroRestante: Number,
+	estado: Boolean,
+	fechaLimite: Date
+});
+
+
 const userSchema = new mongoose.Schema({
   local:{
     name: String,
@@ -9,6 +32,7 @@ const userSchema = new mongoose.Schema({
     email: String,
     password: String
   }
+  Account: accountSchema
 }) ;
 
 userSchema.methods.hashingPassword = function(password){
