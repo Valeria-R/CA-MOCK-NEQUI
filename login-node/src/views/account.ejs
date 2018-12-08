@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
 
-    <title>Mattress</title>
+    <title>Account</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> <!-- este es para el css -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -19,49 +19,37 @@
 <body>
   <!-- form -->
 
-  <form action="" method="">
+  <form action="/test" method="POST">
 
-    <label for="moneyToMattress">Monto a ingresar:</label>
+    <label>Ingresar dinero a la cuenta:</label>
 
-    <div class="input-group" id="wrapper">
+    <div class="input-group">
 
-      <input required type="number" name="mattressMoney" class="form-control">
+      <input required type="number" name="userId" value="<%= user._id %>" class="form-control" hidden>
+
+      <input required type="number" name="money" class="form-control">
 
       <button type="submit" class="col-2 btn btn-info btn-sm">Ingresar</button>
-
 
     </div>
 
   </form>
 
-  <form action="" method="">
+  <form action="/removeMoney" method="post">
 
-    <label for="moneyToAccount">Sacar plata a cuenta:</label>
+    <label>Retirar dinero de la cuenta:</label>
 
     <div class="input-group">
 
-      <input required type="number" name="mattressAccount" class="form-control">
+      <input required type="number" name="userId" value="<%= user._id %>" class="form-control" hidden>
+
+      <input required type="number" name="money" class="form-control">
 
         <button type="submit" class="col-2 btn btn-danger btn-sm"> Retirar </button>
 
     </div>
 
   </form>
-
-  <label> Plata disponible en colchon: </label>
-
-  <br>
-
-  <label for="moneyOnMattress"> <%= user.account.mattress %> </label>
-
-  <script>
-    function reload () {
-    var fr=document.getElementById('tehframe');
-    if(fr!=null) document.getElementById("wrapper").removeChild(fr);
-    var iframehtml="<iframe id='tehframe' src=…></iframe>";
-    document.getElementById("wrapper").innerHTML=iframehtml;
-    }
-  </script>
 
 </body>
 

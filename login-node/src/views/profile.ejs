@@ -53,42 +53,53 @@
   <!-- form -->
     <div class="row">
     <div class="col">
+
+      <div class="row">
+        <div class="form-group">
+          <form action="/account" method="get" target="insideFrame">
+            <input type="text" name="userId" value="<%= user._id %>" hidden>
+            <label >Saldo en cuenta:</label>
+            <button class="btn btn-primary" type="submit"></button>
+          </form>
+        </div>
+      </div>
+
         <div class="row">
           <div class="form-group">
             <form action="/mattress" method="get" target="insideFrame">
               <input type="text" name="userId" value="<%= user._id %>" hidden>
-              <label for="email">Saldo en colchon:</label>
+              <label >Saldo en colchon:</label>
               <button class="btn btn-primary" type="submit"></button>
             </form>
           </div>
         </div>
         <div class="row">
           <div class="form-group">
-            <label for="email">Saldo en los bolsillos:</label>
+            <label >Saldo en los bolsillos:</label>
             <a class="btn btn-primary" href="/pockets" target="insideFrame"></a>
           </div>
         </div>
         <div class="row">
           <div class="form-group">
-            <label for="email">Saldo en las metas:</label>
+            <label >Saldo en las metas:</label>
             <a class="btn btn-primary" href="/goals" target="insideFrame"></a>
           </div>
         </div>
         <div class="row">
           <div class="form-group">
-            <label for="email">Saldo total de la cuenta:</label>
-            <h4>0000</h4>
+            <label >Saldo total de la cuenta:</label>
+             <%= user.account.saldoTotal %>
           </div>
         </div>
         <div class="row">
           <div class="form-group">
-            <label for="email">Saldo disponible de la cuenta:</label>
-            <h4>0000</h4>
+            <label >Saldo disponible de la cuenta:</label>
+             <%= user.account.saldoDisponible %>
           </div>
         </div>
     </div>
     <div class="col">
-      <iframe src="" id="insideFrame" name="insideFrame" frameBorder="0"></iframe>
+      <iframe src="" id="insideFrame" name="insideFrame" frameBorder="1"></iframe>
     </div>
     </div>
   <hr>

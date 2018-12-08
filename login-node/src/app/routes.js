@@ -47,12 +47,19 @@ module.exports = (app, passport) => {
 	    res.redirect('/')
 	});
 
+  app.post('/test', (req,res) =>{
+		console.log("Si sirvo para algo.");
+	})
+
 	//añadir dinero
-app.post("/addMoney", isLoggedIn, (res,req) =>{
-	user.findById({_id: req.body.userId}, function(user,err){
+app.post('/addMoney', isLoggedIn, (req,res) =>{
+	console.log(req.body);
+	User.findById({_id: req.body.userId}, function(err,user){
 		if(err){
+			console.log("Entre");
 			res.status(500).send()
 		}
+		console.log(user);
 		user.account.saldoTotal = user.account.saldoTotal + parseInt(req.body.money)
 
 		user.account.saldoDisponible = user.account.saldoDisponible + parseInt(req.body.money)
@@ -62,8 +69,8 @@ app.post("/addMoney", isLoggedIn, (res,req) =>{
 })
 
 //remover dinero
-app.post("/removeMoney", isLoggedIn, (res, req) => {
-	user.findById({_id: req.body.userId}, function(user,err){
+app.post("/removeMoney", isLoggedIn, (req,res) => {
+	User.findById({_id: req.body.userId}, function(user,err){
 		user.account.saldoTotal = user.account.saldoTotal - parseInt(req.body.money)
 
 		user.account.saldoDisponible = user.account.saldoDisponible - parseInt(req.body.money)
@@ -73,20 +80,20 @@ app.post("/removeMoney", isLoggedIn, (res, req) => {
 })
 
 //añadir dinero al colchon
-app.post("/addMattress", isLoggedIn, (res,req) => {
-	user.findById({_id: req.body.userId}, function(user,err){
+app.post("/addMattress", isLoggedIn, (req,res) => {
+	User.findById({_id: req.body.userId}, function(user,err){
 		if(err){
 			res.status(500).send()
 		}
 		user.account.mattress = user.account.mattress + parseInt(req.body.mattressMoney);
 		user.save()
-		res.redurect('/profile')
+		res.redirect('/profile')
 	})
 })
 
 //devolver plata del colchon al saldo
-app.post("/removeMattress", isLoggedIn, (res,req) => {
-    user.findById({_id: req.body.userId}, function(user, err){
+app.post("/removeMattress", isLoggedIn, (req,res) => {
+    User.findById({_id: req.body.userId}, function(user, err){
         user.account.saldoDisponible = user.account.saldoDisponible + parseInt(req.body.mattressAccount)
         user.account.mattress = user.account.mattress - parseInt(req.body.mattressAccount)
         user.save()
@@ -95,8 +102,8 @@ app.post("/removeMattress", isLoggedIn, (res,req) => {
 })
 
 //crear bolsillo
-app.post("/addPocket", isLoggedIn, (res,req) => {
-	user.findById({_id: req.body.userId}, function(user, err){
+app.post("/addPocket", isLoggedIn, (req,res) => {
+	User.findById({_id: req.body.userId}, function(user, err){
 		if(err){
 			res.status(500).send()
 		}
@@ -110,8 +117,8 @@ app.post("/addPocket", isLoggedIn, (res,req) => {
 })
 
 //añadir dinero al bolsillo
-app.post("/addPocketMoney", isLoggedIn, (res,req) => {
-	user.findById({_id: req.body.userId}, function(user, err){
+app.post("/addPocketMoney", isLoggedIn, (req,res) => {
+	User.findById({_id: req.body.userId}, function(user, err){
 		if(err){
 			res.status(500).send()
 		}
@@ -125,8 +132,8 @@ app.post("/addPocketMoney", isLoggedIn, (res,req) => {
 })
 
 //retirar dinero del bolsillo
-app.post("/removePocket", isLoggedIn, (res,req) => {
-	user.findById({_id: req.body.userId}, function(user, err){
+app.post("/removePocket", isLoggedIn, (req,res) => {
+	User.findById({_id: req.body.userId}, function(user, err){
 
 		var monto = parseInt(req.body.pocketMoney)
 		user.account.pockets.id(req.body.idPocket).pocketSaldo -= monto,
@@ -139,8 +146,8 @@ app.post("/removePocket", isLoggedIn, (res,req) => {
 })
 
 //eliminar bolsillo
-app.post("/deletePocket", isLoggedIn, (res,req) => {
-	user.findById({_id: req.body.userId}, function(user, err){
+app.post("/deletePocket", isLoggedIn, (req,res) => {
+	User.findById({_id: req.body.userId}, function(user, err){
 		var pockets = user.account.pockets
 		for(var i = 0; i < pockets.length; i++ ){
 			if(pockets[i] == req.body.pockedId){
@@ -154,8 +161,8 @@ app.post("/deletePocket", isLoggedIn, (res,req) => {
 })
 
 //añadir una meta
-app.post("/addGoal", isLoggedIn, (res,req) => {
-	user.findById({_id: req.body.userId}, function(user,err){
+app.post("/addGoal", isLoggedIn, (req,res) => {
+	User.findById({_id: req.body.userId}, function(user,err){
 		if(err){
 			res.status(500).send()
 		}
@@ -173,8 +180,8 @@ app.post("/addGoal", isLoggedIn, (res,req) => {
 })
 
 //añadir dinero a la meta
-app.post("/addGoalMoney", isLoggedIn, (res,req) => {
-	user.findById({_id: req.body.userId}, function(user,err){
+app.post("/addGoalMoney", isLoggedIn, (req,res) => {
+	User.findById({_id: req.body.userId}, function(user,err){
 		if(err){
 			res.status(500).send()
 		}
@@ -185,6 +192,12 @@ app.post("/addGoalMoney", isLoggedIn, (res,req) => {
 		user.save()
 		res.redirect('/profile')
 	})
+})
+
+app.get('/account', (req,res) => {
+	res.render('account',{
+        user: req.user
+  })
 })
 
 app.get('/mattress', (req,res) => {
