@@ -63,10 +63,11 @@ Disponible = Total en la cuenta - dinero en colchón - dinero en metas - dinero 
 ## Lista de Tareas
 - [x] Registrar nuevos usuarios con su nombre, email y contraseña.
 - [x] ingresar sesion.
-- [ ] CRUD cuenta
-- [ ] CRUD colchón
-- [ ] CRUD bolsillo
-- [ ] CRUD metas
+- [x] CRUD cuenta.
+- [x] CRUD colchón.
+- [x] CRUD bolsillo.
+- [x] CRUD metas.
+- [ ] Tranferencias.
 
 ### Las restricciones el problema son las siguientes:
   * La contraseña no debe ser almacenada en texto plano. Se debe usar una codificación SHA2 para guardarlas y validarlas.
