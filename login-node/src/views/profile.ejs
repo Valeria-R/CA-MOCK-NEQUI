@@ -28,7 +28,7 @@
     <div class="container">
 
             <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-                          <img src = "./Nequi.png" width = 10% height = 60%></img>
+                          <img src = "./Nequi.png" width = 10% height = 60% >
   <a class="navbar-brand" href="#">Mock Nequi</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -37,12 +37,6 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Bolsillos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Colchon</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Transferencias</a>
@@ -57,14 +51,15 @@
 
 <div class="card-body">
   <!-- form -->
-  <form action="/login" method="post">
-
     <div class="row">
     <div class="col">
         <div class="row">
           <div class="form-group">
-            <label for="email">Saldo en colchon:</label>
-            <a class="btn btn-primary" href="/mattress" target="insideFrame"></a>
+            <form action="/mattress" method="get" target="insideFrame">
+              <input type="text" name="userId" value="<%= user._id %>" hidden>
+              <label for="email">Saldo en colchon:</label>
+              <button class="btn btn-primary" type="submit"></button>
+            </form>
           </div>
         </div>
         <div class="row">
@@ -93,11 +88,9 @@
         </div>
     </div>
     <div class="col">
-      <iframe src="" id="insideFrame" name="insideFrame" frameBorder="20"></iframe>
+      <iframe src="" id="insideFrame" name="insideFrame" frameBorder="0"></iframe>
     </div>
     </div>
-
-  </form>
   <hr>
 </div>
             <hr>

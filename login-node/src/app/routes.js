@@ -1,3 +1,5 @@
+const User = require('./models/user');
+
 module.exports = (app, passport) => {
 
 	app.get('/',(req,res) => {
@@ -5,8 +7,6 @@ module.exports = (app, passport) => {
 		res.render('index');
 
 	});
-
-
 
 	app.get('/login',(req,res) => {
 
@@ -17,7 +17,6 @@ module.exports = (app, passport) => {
 		});
 
 	});
-
 
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect: '/profile',
@@ -47,7 +46,6 @@ module.exports = (app, passport) => {
 	    req.logout();
 	    res.redirect('/')
 	});
-
 
 	//añadir dinero
 app.post("/addMoney", isLoggedIn, (res,req) =>{
@@ -85,8 +83,8 @@ app.post("/addMattress", isLoggedIn, (res,req) => {
 		res.redurect('/profile')
 	})
 })
-	
-	//devolver plata del colchon al saldo
+
+//devolver plata del colchon al saldo
 app.post("/removeMattress", isLoggedIn, (res,req) => {
     user.findById({_id: req.body.userId}, function(user, err){
         user.account.saldoDisponible = user.account.saldoDisponible + parseInt(req.body.mattressAccount)
@@ -95,7 +93,6 @@ app.post("/removeMattress", isLoggedIn, (res,req) => {
         res.redirect('/profile')
     })
 })
-
 
 //crear bolsillo
 app.post("/addPocket", isLoggedIn, (res,req) => {
@@ -156,8 +153,6 @@ app.post("/deletePocket", isLoggedIn, (res,req) => {
 	})
 })
 
-
-
 //añadir una meta
 app.post("/addGoal", isLoggedIn, (res,req) => {
 	user.findById({_id: req.body.userId}, function(user,err){
@@ -177,7 +172,6 @@ app.post("/addGoal", isLoggedIn, (res,req) => {
 	})
 })
 
-
 //añadir dinero a la meta
 app.post("/addGoalMoney", isLoggedIn, (res,req) => {
 	user.findById({_id: req.body.userId}, function(user,err){
@@ -193,8 +187,11 @@ app.post("/addGoalMoney", isLoggedIn, (res,req) => {
 	})
 })
 
-app.get("/mattress", (req,res) => {
-	res.render('mattress')
+app.get('/mattress', (req,res) => {
+	console.log(res.User);
+	res.render('mattress',{
+        user: req.user
+  })
 })
 
 app.get("/pockets", (req,res) => {
