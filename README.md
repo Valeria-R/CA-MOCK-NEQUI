@@ -92,10 +92,3 @@ Disponible = Total en la cuenta - dinero en colchón - dinero en metas - dinero 
 
 ## Bibliografía
 * https://www.nequi.com.co
-
-### Instalación y configuración
-
-1. git clone <URL del repositorio>
-2. mongod en la Terminal para iniciar servicio de MongoDB
-3. En /CA-MOCK-NEQUI/login-code usar npm install para las dependencias
-4. npm run dev para desarrollo || npm start para producción
